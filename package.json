@@ -1,0 +1,57 @@
+{
+  "name": "@znemz/types",
+  "version": "0.0.1",
+  "description": "Common Typescript types",
+  "keywords": [
+    "types",
+    "typescript"
+  ],
+  "repository": {},
+  "license": "MIT",
+  "author": "Nicholas McCready",
+  "files": [
+    "lib",
+    "umd",
+    "modules",
+    "src"
+  ],
+  "main": "lib/index.js",
+  "module": "module/index.js",
+  "scripts": {
+    "build": "yarn gulp default && yarn roll:it",
+    "docs:api:markdown": "yarn typedoc --theme markdown --exclude ./src/test --out ./docsApi ./src --readme none && mv docsApi/* . && rm -rf docsApi",
+    "docs:api:website": "yarn typedoc --exclude ./src/test --out docs ./src --readme none",
+    "lint": "eslint --ext .js,.ts,.tsx *.js src --color",
+    "lint:watch": "yarn lint --watch",
+    "postinstall:1": "yarn js-common-editorconfig-clone && yarn js-common-eslint-config-mono-clone",
+    "postinstall:2": "yarn js-common-prettierrc-clone && yarn js-common-eslint-config-mono-clone & yarn js-common-tsconfig-clone",
+    "prepare": "yarn postinstall:1 && yarn postinstall:2 && yarn sort-package-json",
+    "roll:it": "yarn rollup -c ./rollup.config.ts",
+    "test": "yarn gulp",
+    "test:ci": "yarn test",
+    "preversion": "yarn build"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^2.0.1",
+    "@types/bluebird": "^3.5.27",
+    "@types/react": "^16.8.19",
+    "@znemz/js-common-editorconfig-clone": "^0.0.23",
+    "@znemz/js-common-eslint-config-mono-clone": "^0.0.23",
+    "@znemz/js-common-gulp-monorepo-typescript": "^0.0.23",
+    "@znemz/js-common-prettierrc-clone": "^0.0.23",
+    "@znemz/js-common-tsconfig-clone": "^0.0.23",
+    "@znemz/react-extras-jest": "^1.1.0",
+    "coveralls": "^3.0.4",
+    "del": "^4.1.1",
+    "gulp-run": "^1.7.1",
+    "prettier": "^1.18.2",
+    "rollup": "^1.20.1",
+    "rollup-plugin-typescript": "^1.0.1",
+    "sort-package-json": "^1.21.0",
+    "ts-node-register": "^1.0.0",
+    "typedoc": "^0.15.0",
+    "typedoc-plugin-markdown": "^2.1.4",
+    "typescript": "^3.5.1"
+  },
+  "umd": "umd/index.js"
+}
